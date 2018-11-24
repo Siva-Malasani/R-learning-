@@ -1,0 +1,445 @@
+### R Basic commands 
+setwd("C:/Users/smalasani/Documents")
+getwd() # to get present working directory 
+installed.packages() # to list all the installed pacakages 
+search() # to list all the loaded pacakages 
+data() # to list all the sample dataset present in the pakages installed 
+ls()   # to list all the object in the global environtment  
+
+
+############################################################################
+# Data Types 
+Logical     # TRUE FALSE                 v <- TRUE 
+Numeric     #12.3,5,999                  v <- 23.5   Continious 
+Integer     #2L,34L                      v <- 2L     Discreat 
+Character   # 'a' "good" "TRUE" "23.4"   v <- "GOOD"
+Complex     # 3+2i                       v <- 2+5i
+Date and Time          #date()   
+
+
+############################################################################
+# R object  #Data structures
+vector      # 1 dimensional array   #Homogenous 
+matrix      # 2 dimensional array   #Homogenous 
+List        # 1 dimensional         #Hetrogenous 
+dataframes  # 2 dimensional         #Hetrogenous 
+Factors     # way of handelling categerocal data
+arrays      # n dimensional 
+
+
+############################################################################
+Vector
+# Create a vector.
+apple <- c('red','green',"yellow")
+print(apple)
+
+# Get the class of the vector.
+class(apple)
+
+
+Matrices
+# Create a matrix.
+M = matrix( c('a','a','b','c','b','a'), nrow = 2, ncol = 3, byrow = TRUE)
+print(M)
+
+
+List 
+# Create a list.
+list1 <- list(c(2,5,3),21.3,sin)
+
+# Print the list.
+print(list1)
+
+
+
+Dataframes 
+
+# Create the data frame.
+BMI <- 	data.frame(
+  gender = c("Male", "Male","Female"), 
+  height = c(152, 171.5, 165), 
+  weight = c(81,93, 78),
+  Age = c(42,38,26)
+)
+print(BMI)
+
+
+Factors
+# Create a vector.
+apple_colors <- c('green','green','yellow','red','red','red','green')
+
+# Create a factor object.
+factor_apple <- factor(apple_colors)
+
+# Print the factor.
+print(factor_apple)
+print(nlevels(factor_apple))
+table(factor_apple)
+unique(apple_colors)
+
+
+Arrays
+# Create an array.
+a <- array(c('green','yellow'),dim = c(3,3,2))
+print(a)
+
+
+Assignment Operator 
+# Assignment using equal operator.
+var.1 = c(0,1,2,3)           
+
+# Assignment using leftward operator.
+var.2 <- c("learn","R")   
+
+# Assignment using rightward operator.   
+c(TRUE,1) -> var.3 
+
+
+############################################################################
+Variables # dynamic variable 
+
+#List all variables 
+print(ls())
+
+# List the variables starting with the pattern "var".
+print(ls(pattern = "var"))   
+
+#print all the variable which has dots 
+print(ls(all.name = TRUE))
+
+#remove a variable 
+rm(a)
+a
+
+#remove all the variables 
+rm(list = ls())
+print(ls())
+
+
+############################################################################
+Operators 
+
+
+Airthmetic Operator 
++ - * / %% %/% ^ 
+
+  
+Relational Operator 
+> < == <= >= !=
+  
+
+Logical Operator
+& | ! && || 
+
+Assignemtn operator
+<- <<- == ->> ->
+  
+Miscellaneous operator
+#:     Colon operator. It creates the series of numbers in sequence for a vector.
+v <- 2:8
+print(v)  
+
+#%in%  This operator is used to identify if an element belongs to a vector.
+v1 <- 8
+t <- 1:10
+print(v1 %in% t) 
+
+#%*%   This operator is used to multiply a matrix with its transpose.
+
+M = matrix( c(2,6,5,1,10,4), nrow = 2,ncol = 3,byrow = TRUE)
+t = M %*% t(M)
+print(t)
+
+
+
+############################################################################
+Decesion making 
+
+
+# if statment 
+x <- 30L
+if(is.integer(x)) {
+  print("X is an Integer")
+}
+
+
+# if else statament 
+x <- c("what","is","truth")
+
+if("Truth" %in% x) {
+  print("Truth is found")
+} else {
+  print("Truth is not found")
+}
+
+
+
+# if else if else statament 
+x <- c("what","is","truth")
+
+if("Truth" %in% x) {
+  print("Truth is found the first time")
+} else if ("truth" %in% x) {
+  print("truth is found the second time")
+} else {
+  print("No truth found")
+}
+
+
+
+# Switch statment 
+switch(expression, case1, case2, case3....)
+
+x <- switch(3,
+  "first",
+  "second",
+  "third",
+  "fourth"
+)
+print(x)
+
+
+
+############################################################################
+Loops 
+
+
+# repeate loop 
+
+v <- "repeate loop"
+cnt <- 1
+
+repeat {
+  print(v)
+  cnt <- cnt+1
+  
+  if(cnt > 5) {
+    break
+  }
+}
+
+
+#  while loop
+
+w <- " while loop"
+cnt<- 1
+
+while (cnt < 7) {
+  print(w)
+  cnt = cnt + 1
+}
+
+
+
+# For loop 
+
+v <- LETTERS[1:4]
+for ( i in v) {
+  print(i)
+}
+
+
+
+for (i in 2010:2015){
+  print(paste("The year is", i))
+}
+"The year is 2010"
+"The year is 2011"
+"The year is 2012"
+"The year is 2013"
+"The year is 2014"
+"The year is 2015"
+
+
+x<-c(2,8,6,4)
+for (i in 1:length(x) ) {
+  if (x[i]< 10) {
+    print(paste(x[i],"number is less than 10"))
+  }
+}
+
+
+############################################################################
+Loop control statments 
+
+
+# break  When the break statement is encountered inside a loop, the loop is immediately terminated and program control resumes at the next statement following the loop
+
+v <- c("Hello","loop")
+cnt <- 2
+
+repeat {
+  print(v)
+  cnt <- cnt + 1
+  
+  if(cnt > 5) {
+    break
+  }
+}
+
+
+# next   On encountering next, the R parser skips further evaluation and starts next iteration of the loop.
+
+v <- LETTERS[1:6]
+for ( i in v) {
+  
+  if (i == "D") {
+    next
+  }
+  print(i)
+}
+
+
+
+############################################################################
+Functions 
+
+function_name <- function(arg_1, arg_2, ...) {
+  Function body 
+}
+
+
+# Bulit in functions 
+
+seq(), mean(), max(), sum(x) and paste(...) 
+
+
+# Create a sequence of numbers from 32 to 44.
+print(seq(32,44))
+
+# Find mean of numbers from 25 to 82.
+print(mean(25:82))
+
+# Find sum of numbers frm 41 to 68.
+print(sum(41:68))
+
+
+
+# User defined function 
+
+# Create a function to print squares of numbers in sequence.
+new.function <- function(a) {
+  for(i in 1:a) {
+    b <- i^2
+    print(b)
+  }
+}
+
+# Call the function new.function supplying 3 as an argument.
+new.function(3)
+
+
+
+i=1
+j=1
+l<-list(2,4,6,8)
+ten.function <- function(l) {
+  for(i in 1:length(l)){
+    for(j in 1:length(l))
+    if(sum(as.numeric(l[i])+as.numeric(l[j])) == 10) {
+      print(paste(l[i],l[j], "sum up to 10"))
+    }
+  }
+}
+
+ten.function(l)
+[1] "2 8 sum up to 10"
+[1] "4 6 sum up to 10"
+[1] "6 4 sum up to 10"
+[1] "8 2 sum up to 10"
+
+
+ten.function <- function(l) {
+  for(i in 1:length(l)){
+    for(j in 1:length(l))
+      if(sum(as.numeric(l[i])+as.numeric(l[j])) == 10) {
+        print(paste(l[i],l[j], "sum up to 10"))
+      }
+  }
+}
+ten.function(l=c(2,4,6,9))
+
+## Calling function by position and by name 
+
+# Create a function with arguments.
+new.function <- function(a,b,c) {
+  result <- a * b + c
+  print(result)
+}
+
+# Call the function by position of arguments.
+new.function(5,3,11)
+
+# Call the function by names of the arguments.
+new.function(a = 11, b = 5, c = 3)
+
+
+## Calling a function with default arguments 
+# Create a function with arguments.
+new.function <- function(a = 3, b = 6) {
+  result <- a * b
+  print(result)
+}
+
+# Call the function without giving any argument.
+new.function()
+
+# Call the function with giving new values of the argument.
+new.function(9,5)
+
+###########################################################################
+
+Strings 
+
+a <- 'Start and end with single quote'
+print(a)
+
+b <- "Start and end with double quotes"
+print(b)
+
+
+#concatenating strings 
+
+a <- "Hello"
+b <- 'How'
+c <- "are you? "
+
+print(paste(a,b,c))
+
+print(paste(a,b,c, sep = "-"))
+
+print(paste(a,b,c, sep = "", collapse = ""))
+
+
+[1] "Hello How are you? "
+[1] "Hello-How-are you? "
+[1] "HelloHoware you? "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
